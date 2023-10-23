@@ -48,7 +48,7 @@ fun CameraView.invokeOnCodeScanned(barcodes: List<Barcode>) {
     val code = Arguments.createMap()
     val type = CodeType.fromBarcodeType(barcode.format)
     code.putString("type", type.unionValue)
-    code.putString("value", barcode.rawValue)
+    code.putString("value", (barcode.rawValue ?: barcode.displayValue).toString())
 
     barcode.boundingBox?.let { rect ->
       val frame = Arguments.createMap()
